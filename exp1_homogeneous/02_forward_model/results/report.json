@@ -1,0 +1,193 @@
+{
+  "config_hash": "324f43edc8b4073ea5f792c94a630cec239431b90813d6d5ec81e5ea7a98c38d",
+  "readout_version": "pixelwise_N0_then_y_mean_then_x_bin/v1",
+  "interpolation_checks": [
+    {
+      "depth_mm": 0.625,
+      "observed": {
+        "central_contrast": 0.6494501369871761,
+        "fwhm_mm": 4.463153099328419,
+        "edge_abs_contrast": 0.004343812264560031
+      },
+      "interpolated": {
+        "central_contrast": 0.6431756327041562,
+        "fwhm_mm": 4.506336329010326,
+        "edge_abs_contrast": 0.004244245784516617
+      },
+      "contrast_absolute_difference": 0.006274504283019899,
+      "contrast_relative_difference": 0.009661256385482592,
+      "fwhm_relative_difference": 0.009675498178273165,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both",
+      "profile_mae": 0.0022081746719777584
+    },
+    {
+      "depth_mm": 2.25,
+      "observed": {
+        "central_contrast": 0.23418850363277663,
+        "fwhm_mm": 7.181682420858474,
+        "edge_abs_contrast": 0.004168542914526872
+      },
+      "interpolated": {
+        "central_contrast": 0.24109384538954357,
+        "fwhm_mm": 7.063762836819504,
+        "edge_abs_contrast": 0.004224255709369525
+      },
+      "contrast_absolute_difference": 0.006905341756766936,
+      "contrast_relative_difference": 0.029486254233875537,
+      "fwhm_relative_difference": 0.0164194929723548,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both",
+      "profile_mae": 0.00269998237490654
+    },
+    {
+      "depth_mm": 4.75,
+      "observed": {
+        "central_contrast": 0.06595586136938464,
+        "fwhm_mm": 10.83323193590198,
+        "edge_abs_contrast": 0.0022997416663659764
+      },
+      "interpolated": {
+        "central_contrast": 0.06818777162467235,
+        "fwhm_mm": 10.550683761141283,
+        "edge_abs_contrast": 0.0025591480092225973
+      },
+      "contrast_absolute_difference": 0.0022319102552877113,
+      "contrast_relative_difference": 0.03383945276353738,
+      "fwhm_relative_difference": 0.02608161409563431,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both",
+      "profile_mae": 0.002265645656734705
+    }
+  ],
+  "gate_pass": true,
+  "profiles": [
+    {
+      "depth_mm": 0.5,
+      "central_contrast": 0.7039896261376106,
+      "fwhm_mm": 4.304517789044477,
+      "edge_abs_contrast": 0.004701809287139775
+    },
+    {
+      "depth_mm": 0.75,
+      "central_contrast": 0.5823616392707021,
+      "fwhm_mm": 4.754779997931574,
+      "edge_abs_contrast": 0.0037866822818934578
+    },
+    {
+      "depth_mm": 1.0,
+      "central_contrast": 0.5065699978562437,
+      "fwhm_mm": 5.150374464981577,
+      "edge_abs_contrast": 0.004048031967672102
+    },
+    {
+      "depth_mm": 1.25,
+      "central_contrast": 0.42185163126105574,
+      "fwhm_mm": 5.582973374452743,
+      "edge_abs_contrast": 0.004863602969084973
+    },
+    {
+      "depth_mm": 1.5,
+      "central_contrast": 0.3700376068400437,
+      "fwhm_mm": 5.887130679544355,
+      "edge_abs_contrast": 0.004691520748369189
+    },
+    {
+      "depth_mm": 2.0,
+      "central_contrast": 0.27360594406545014,
+      "fwhm_mm": 6.779942451986425,
+      "edge_abs_contrast": 0.0045417705282046325
+    },
+    {
+      "depth_mm": 2.5,
+      "central_contrast": 0.20858174671363705,
+      "fwhm_mm": 7.462251116905793,
+      "edge_abs_contrast": 0.003906740890534416
+    },
+    {
+      "depth_mm": 3.0,
+      "central_contrast": 0.15787242052711428,
+      "fwhm_mm": 8.142739472107746,
+      "edge_abs_contrast": 0.004484545504849351
+    },
+    {
+      "depth_mm": 3.5,
+      "central_contrast": 0.1226322125944671,
+      "fwhm_mm": 9.026094430015846,
+      "edge_abs_contrast": 0.003759617643451273
+    },
+    {
+      "depth_mm": 4.0,
+      "central_contrast": 0.09558118367892515,
+      "fwhm_mm": 9.811110087062323,
+      "edge_abs_contrast": 0.003818308965074466
+    },
+    {
+      "depth_mm": 4.5,
+      "central_contrast": 0.07515861237229637,
+      "fwhm_mm": 10.369716623813128,
+      "edge_abs_contrast": 0.0018797742360565032
+    },
+    {
+      "depth_mm": 5.0,
+      "central_contrast": 0.06137986950607694,
+      "fwhm_mm": 10.741217392459392,
+      "edge_abs_contrast": 0.0032385217823886914
+    }
+  ],
+  "scope": "Ideal simulation; training data from one shared MC LUT; held-out direct MC checks are not LUT knots.",
+  "interpolation": "linear in depth; no extrapolation",
+  "sources": [
+    {
+      "path": "results\\stage2\\depth_0.500.npz",
+      "identity_hash": "7a86679b8da8230385929ee9f2e727c645f858a03a67ea3a86cbcf7795be9b83"
+    },
+    {
+      "path": "results\\stage2\\depth_0.750.npz",
+      "identity_hash": "cadadadbcfc7250a88c6de72444aed21cbc89c4955fedfda4e65837478122125"
+    },
+    {
+      "path": "results\\stage2\\depth_1.000.npz",
+      "identity_hash": "c5b043d4cf8eb450eeb66082ee76aa499165b77df109e3191000f154456cf3d5"
+    },
+    {
+      "path": "results\\stage2\\depth_1.250.npz",
+      "identity_hash": "8ec6f3535822febb2e28edd00147bfa5056086b394cee3a062d205fce3fe1fa7"
+    },
+    {
+      "path": "results\\stage2\\depth_1.500.npz",
+      "identity_hash": "2b5e46c6d9bf21bebc215fa3d164acd4b29547920c8b15e24694f33b88fbde4f"
+    },
+    {
+      "path": "results\\stage1\\channel_2mm.npz",
+      "identity_hash": "3b98549650831dad762e11814fac938ad4d657509ebe90273cb49f932b707d38"
+    },
+    {
+      "path": "results\\stage2\\depth_2.500.npz",
+      "identity_hash": "0c481378a981cff3c2bbbae60b3dd0df3b4354ce069636c1bd5102498b28e979"
+    },
+    {
+      "path": "results\\stage2\\depth_3.000.npz",
+      "identity_hash": "30be4e12a1624ee801ab9654ddf139edd3bba4d5592e042690ed88538350b198"
+    },
+    {
+      "path": "results\\stage2\\depth_3.500.npz",
+      "identity_hash": "4a985d33efef7c0770c4cd9600296a95cfff3d1e00523782bfe710194a7924a9"
+    },
+    {
+      "path": "results\\stage2\\depth_4.000.npz",
+      "identity_hash": "519fa3141ab6b566b7c61738deff1793b6d25aa3da6c81cd7e1abd84d0dab2fe"
+    },
+    {
+      "path": "results\\stage2\\depth_4.500.npz",
+      "identity_hash": "d2bbb0acb05fbf2e5eeab064414d227ca686a0a85dfd8ccdb98b31302d286617"
+    },
+    {
+      "path": "results\\stage2\\depth_5.000.npz",
+      "identity_hash": "5938ab86cb429e437cf2f2b4fdc203f6fae239c76abdbfe95a608b2cd8b5b405"
+    }
+  ]
+}

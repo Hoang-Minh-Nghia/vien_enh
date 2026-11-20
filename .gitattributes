@@ -1,0 +1,17 @@
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.npz binary
+*.npy binary
+*.pt binary
+*.png binary
+
+# Archived results: keep byte-exact as produced
+**/results/** -text
+**/data/** -text
+exp1_homogeneous/maintenance/** -text
+
+# Frozen files: keep byte-exact (hashes in docs/FROZEN_FILES.sha256)
+exp1_homogeneous/configs/** -text
+exp1_homogeneous/common/simulate.py -text
+exp1_homogeneous/common/readout.py -text
+exp1_homogeneous/common/train.py -text

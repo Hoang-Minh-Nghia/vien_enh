@@ -1,0 +1,47 @@
+{
+  "pass": true,
+  "main_MC_configurations": 48,
+  "samples_per_branch": 6000,
+  "points_per_sample": 128,
+  "model_count": 6,
+  "split_counts_by_absorption": {
+    "train": {
+      "0.15": 1200,
+      "0.3": 1200,
+      "0.508": 1200,
+      "1.0": 1200
+    },
+    "validation": {
+      "0.15": 150,
+      "0.3": 150,
+      "0.508": 150,
+      "1.0": 150
+    },
+    "test": {
+      "0.15": 150,
+      "0.3": 150,
+      "0.508": 150,
+      "1.0": 150
+    }
+  },
+  "recomputed_weak_metrics_from_CSV": [
+    {
+      "seed": 42,
+      "MAE_F_mm": 0.1693707917133967,
+      "MAE_K_mm": 0.5976030931870142
+    },
+    {
+      "seed": 43,
+      "MAE_F_mm": 0.29824896037578585,
+      "MAE_K_mm": 0.6534510705868403
+    },
+    {
+      "seed": 44,
+      "MAE_F_mm": 0.3210638238986333,
+      "MAE_K_mm": 0.6140498648087184
+    }
+  ],
+  "dataset_sha256": "e98155a93b070983c511076125c5e74ac491395dfcff801edf8779914b3a34b1",
+  "readout_version": "pixelwise_N0_then_y_mean_then_x_bin/v1",
+  "scope": "Artifact consistency checks; no physical generalization claim"
+}

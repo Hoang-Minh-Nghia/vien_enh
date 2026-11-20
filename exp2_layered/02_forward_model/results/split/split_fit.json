@@ -1,0 +1,29 @@
+[
+  {
+    "depth_mm": 1.6,
+    "contrast_scattering_vessel": 0.2778471112251282,
+    "contrast_nonscattering_lut_mua0.46": 0.3481039987653105,
+    "pred_mm": 1.9424145197189755,
+    "bias_mm": 0.3424145197189754,
+    "mua_fit": 0.41648600881074166,
+    "rms_residual": 0.002927262419708132
+  },
+  {
+    "depth_mm": 2.6,
+    "contrast_scattering_vessel": 0.16051656007766724,
+    "contrast_nonscattering_lut_mua0.46": 0.19801442301587713,
+    "pred_mm": 2.9330489607475667,
+    "bias_mm": 0.3330489607475666,
+    "mua_fit": 0.4181815534679445,
+    "rms_residual": 0.0028792539505539225
+  },
+  {
+    "depth_mm": 3.6,
+    "contrast_scattering_vessel": 0.10040050745010376,
+    "contrast_nonscattering_lut_mua0.46": 0.11814277662458039,
+    "pred_mm": 3.898557006997884,
+    "bias_mm": 0.2985570069978838,
+    "mua_fit": 0.39478161872957596,
+    "rms_residual": 0.0031081075369613098
+  }
+]

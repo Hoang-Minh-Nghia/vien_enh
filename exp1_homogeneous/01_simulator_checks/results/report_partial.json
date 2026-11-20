@@ -1,0 +1,83 @@
+{
+  "scope": "Simulated ideal hemispherical surface reflectance at depth 2 mm; no camera/phantom validation.",
+  "diagnostic_smoothing_sigma_mm": 0.25,
+  "relative_tolerance": 0.1,
+  "absolute_contrast_tolerance": 0.005,
+  "profiles": {
+    "reference": {
+      "central_contrast": 0.27398006398301816,
+      "fwhm_mm": 6.793868499434481,
+      "edge_abs_contrast": 0.005029537960104353
+    },
+    "repeat": {
+      "central_contrast": 0.2751312823998886,
+      "fwhm_mm": 6.66065693432668,
+      "edge_abs_contrast": 0.0044650318490515595
+    },
+    "double_photons": {
+      "central_contrast": 0.27441735835780756,
+      "fwhm_mm": 6.750396026629706,
+      "edge_abs_contrast": 0.004457594758841995
+    },
+    "fine_grid": {
+      "central_contrast": 0.27283467166529685,
+      "fwhm_mm": 6.834946869804268,
+      "edge_abs_contrast": 0.0054032450722562315
+    },
+    "wide_domain": {
+      "central_contrast": 0.27512972630606947,
+      "fwhm_mm": 6.8240198869862185,
+      "edge_abs_contrast": 0.003417900723563041
+    }
+  },
+  "checks": {
+    "repeat": {
+      "contrast_absolute_difference": 0.0011512184168704365,
+      "contrast_relative_difference": 0.004201832790804046,
+      "fwhm_relative_difference": 0.01960761606128956,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    "double_photons": {
+      "contrast_absolute_difference": 0.0004372943747893987,
+      "contrast_relative_difference": 0.0015960810010486862,
+      "fwhm_relative_difference": 0.0063987804309715325,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    "fine_grid": {
+      "contrast_absolute_difference": 0.0011453923177213166,
+      "contrast_relative_difference": 0.0041805681080223055,
+      "fwhm_relative_difference": 0.0060463887950151455,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    "wide_domain": {
+      "contrast_absolute_difference": 0.0011496623230513037,
+      "contrast_relative_difference": 0.004196153203039481,
+      "fwhm_relative_difference": 0.004438029313379733,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    }
+  },
+  "missing": [
+    "longer_time"
+  ],
+  "integrated_top_reflectance": {
+    "channel_2mm": 0.6130747790058377,
+    "N0": 0.6383501195674763,
+    "channel_2mm_repeat": 0.6131700641795761,
+    "channel_2mm_double": 0.6131075959588635,
+    "channel_2mm_fine": 0.613323212258838,
+    "N0_fine": 0.6383909485884943,
+    "channel_2mm_wide": 0.6194623681309168,
+    "N0_wide": 0.6384454310662114
+  },
+  "energy_bounds_pass": true,
+  "gate_pass": false,
+  "next_action": "Complete or investigate numerical checks before generating main datasets"
+}

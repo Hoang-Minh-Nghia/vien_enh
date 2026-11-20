@@ -1,0 +1,771 @@
+{
+  "scope": "pilot",
+  "manifest_sha256": "61f3a813196cbef1342f6f91917b15132e88b4dd1495a078f93853d4c7500b1d",
+  "max_tier_allowed": 0,
+  "gate_pass": true,
+  "n_conditions": 6,
+  "n_accepted": 6,
+  "cnn_predictions_opened": false,
+  "elapsed_s": 1591.1997411000002,
+  "interpretation": "Numerical MC quality only; ideal surface reflectance; not CNN accuracy or physical validation.",
+  "n0_runs": [
+    {
+      "run_id": "N0_r1",
+      "seed": 30010000,
+      "validity": {
+        "pass": true,
+        "checks": {
+          "config_hash": true,
+          "engine_version": true,
+          "seed": true,
+          "photons": true,
+          "initial_energy": true,
+          "finite_reflectance": true,
+          "positive_reflectance_map": true,
+          "collection_layer": true,
+          "no_channel": true,
+          "strictly_positive_N0": true
+        },
+        "runtime_s": 132.39937639999994
+      }
+    },
+    {
+      "run_id": "N0_r2",
+      "seed": 30020000,
+      "validity": {
+        "pass": true,
+        "checks": {
+          "config_hash": true,
+          "engine_version": true,
+          "seed": true,
+          "photons": true,
+          "initial_energy": true,
+          "finite_reflectance": true,
+          "positive_reflectance_map": true,
+          "collection_layer": true,
+          "no_channel": true,
+          "strictly_positive_N0": true
+        },
+        "runtime_s": 131.8300945000001
+      }
+    },
+    {
+      "run_id": "N0_r3",
+      "seed": 30030000,
+      "validity": {
+        "pass": true,
+        "checks": {
+          "config_hash": true,
+          "engine_version": true,
+          "seed": true,
+          "photons": true,
+          "initial_energy": true,
+          "finite_reflectance": true,
+          "positive_reflectance_map": true,
+          "collection_layer": true,
+          "no_channel": true,
+          "strictly_positive_N0": true
+        },
+        "runtime_s": 131.89445680000017
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "condition_id": "z0.600_m0.150",
+      "depth_mm": 0.6,
+      "mua_mm_inv": 0.15,
+      "mua_group": "seen_weak",
+      "accepted": true,
+      "accepted_tier": 0,
+      "attempts": [
+        {
+          "tier": 0,
+          "photons": 60000000,
+          "valid": true,
+          "converged": true,
+          "repeats": [
+            {
+              "repeat": 1,
+              "run_id": "C_z0.600_m0.150_r1",
+              "seed": 31010000,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.38222760000008
+              },
+              "diagnostics": {
+                "central_contrast": 0.4715275423344073,
+                "fwhm_mm": 4.048793529382693,
+                "edge_abs_contrast": 0.0021190530441325037
+              }
+            },
+            {
+              "repeat": 2,
+              "run_id": "C_z0.600_m0.150_r2",
+              "seed": 31020000,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.34108659999993
+              },
+              "diagnostics": {
+                "central_contrast": 0.47158632987957305,
+                "fwhm_mm": 4.066047222926908,
+                "edge_abs_contrast": 0.0016156897716618226
+              }
+            },
+            {
+              "repeat": 3,
+              "run_id": "C_z0.600_m0.150_r3",
+              "seed": 31030000,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.29764669999986
+              },
+              "diagnostics": {
+                "central_contrast": 0.47218497645954927,
+                "fwhm_mm": 4.018749659779416,
+                "edge_abs_contrast": 0.0021832133145361643
+              }
+            }
+          ],
+          "comparisons": [
+            {
+              "candidate_repeat": 2,
+              "contrast_absolute_difference": 5.8787545165750466e-05,
+              "contrast_relative_difference": 0.00012467467939350686,
+              "fwhm_relative_difference": 0.004261440703014992,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            },
+            {
+              "candidate_repeat": 3,
+              "contrast_absolute_difference": 0.0006574341251419646,
+              "contrast_relative_difference": 0.001394264525646123,
+              "fwhm_relative_difference": 0.007420449915572287,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "condition_id": "z3.300_m0.150",
+      "depth_mm": 3.3,
+      "mua_mm_inv": 0.15,
+      "mua_group": "seen_weak",
+      "accepted": true,
+      "accepted_tier": 0,
+      "attempts": [
+        {
+          "tier": 0,
+          "photons": 60000000,
+          "valid": true,
+          "converged": true,
+          "repeats": [
+            {
+              "repeat": 1,
+              "run_id": "C_z3.300_m0.150_r1",
+              "seed": 31010006,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.19457560000001
+              },
+              "diagnostics": {
+                "central_contrast": 0.09619534648549918,
+                "fwhm_mm": 8.325272611769634,
+                "edge_abs_contrast": 0.0018475039559127022
+              }
+            },
+            {
+              "repeat": 2,
+              "run_id": "C_z3.300_m0.150_r2",
+              "seed": 31020006,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.22274519999996
+              },
+              "diagnostics": {
+                "central_contrast": 0.09767454792993133,
+                "fwhm_mm": 7.766712064888319,
+                "edge_abs_contrast": 0.002874535755573589
+              }
+            },
+            {
+              "repeat": 3,
+              "run_id": "C_z3.300_m0.150_r3",
+              "seed": 31030006,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.2280846000001
+              },
+              "diagnostics": {
+                "central_contrast": 0.09848209109997706,
+                "fwhm_mm": 8.036656296032266,
+                "edge_abs_contrast": 0.0018828480935027645
+              }
+            }
+          ],
+          "comparisons": [
+            {
+              "candidate_repeat": 2,
+              "contrast_absolute_difference": 0.0014792014444321433,
+              "contrast_relative_difference": 0.015377058230723491,
+              "fwhm_relative_difference": 0.0670921629751397,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            },
+            {
+              "candidate_repeat": 3,
+              "contrast_absolute_difference": 0.0022867446144778786,
+              "contrast_relative_difference": 0.02377188396345753,
+              "fwhm_relative_difference": 0.03466749128783415,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "condition_id": "z4.800_m0.150",
+      "depth_mm": 4.8,
+      "mua_mm_inv": 0.15,
+      "mua_group": "seen_weak",
+      "accepted": true,
+      "accepted_tier": 0,
+      "attempts": [
+        {
+          "tier": 0,
+          "photons": 60000000,
+          "valid": true,
+          "converged": true,
+          "repeats": [
+            {
+              "repeat": 1,
+              "run_id": "C_z4.800_m0.150_r1",
+              "seed": 31010009,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.1861071999997
+              },
+              "diagnostics": {
+                "central_contrast": 0.049273174368225474,
+                "fwhm_mm": 9.514737137603166,
+                "edge_abs_contrast": 0.0013560202568530526
+              }
+            },
+            {
+              "repeat": 2,
+              "run_id": "C_z4.800_m0.150_r2",
+              "seed": 31020009,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.14881719999994
+              },
+              "diagnostics": {
+                "central_contrast": 0.048856248176847125,
+                "fwhm_mm": 9.397666639340283,
+                "edge_abs_contrast": 0.00216544797358513
+              }
+            },
+            {
+              "repeat": 3,
+              "run_id": "C_z4.800_m0.150_r3",
+              "seed": 31030009,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.22790669999995
+              },
+              "diagnostics": {
+                "central_contrast": 0.04662956492561834,
+                "fwhm_mm": 9.715701390116418,
+                "edge_abs_contrast": 0.002219606032100706
+              }
+            }
+          ],
+          "comparisons": [
+            {
+              "candidate_repeat": 2,
+              "contrast_absolute_difference": 0.0004169261913783487,
+              "contrast_relative_difference": 0.008461524891061405,
+              "fwhm_relative_difference": 0.012304123232181519,
+              "weak_signal": true,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            },
+            {
+              "candidate_repeat": 3,
+              "contrast_absolute_difference": 0.0026436094426071366,
+              "contrast_relative_difference": 0.05365210333012169,
+              "fwhm_relative_difference": 0.02112136673949948,
+              "weak_signal": true,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "condition_id": "z0.600_m0.508",
+      "depth_mm": 0.6,
+      "mua_mm_inv": 0.508,
+      "mua_group": "standard",
+      "accepted": true,
+      "accepted_tier": 0,
+      "attempts": [
+        {
+          "tier": 0,
+          "photons": 60000000,
+          "valid": true,
+          "converged": true,
+          "repeats": [
+            {
+              "repeat": 1,
+              "run_id": "C_z0.600_m0.508_r1",
+              "seed": 31010400,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.66816989999961
+              },
+              "diagnostics": {
+                "central_contrast": 0.6609742770384556,
+                "fwhm_mm": 4.45232291992141,
+                "edge_abs_contrast": 0.004592083688889173
+              }
+            },
+            {
+              "repeat": 2,
+              "run_id": "C_z0.600_m0.508_r2",
+              "seed": 31020400,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.58557930000006
+              },
+              "diagnostics": {
+                "central_contrast": 0.6598450037642809,
+                "fwhm_mm": 4.455290820426279,
+                "edge_abs_contrast": 0.0041821072088693775
+              }
+            },
+            {
+              "repeat": 3,
+              "run_id": "C_z0.600_m0.508_r3",
+              "seed": 31030400,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.62559539999984
+              },
+              "diagnostics": {
+                "central_contrast": 0.6601721193658521,
+                "fwhm_mm": 4.443648821543518,
+                "edge_abs_contrast": 0.005004279078574408
+              }
+            }
+          ],
+          "comparisons": [
+            {
+              "candidate_repeat": 2,
+              "contrast_absolute_difference": 0.0011292732741746692,
+              "contrast_relative_difference": 0.0017084980662703882,
+              "fwhm_relative_difference": 0.0006665959675991391,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            },
+            {
+              "candidate_repeat": 3,
+              "contrast_absolute_difference": 0.0008021576726034985,
+              "contrast_relative_difference": 0.0012135989258124018,
+              "fwhm_relative_difference": 0.001948218611700517,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "condition_id": "z3.300_m0.508",
+      "depth_mm": 3.3,
+      "mua_mm_inv": 0.508,
+      "mua_group": "standard",
+      "accepted": true,
+      "accepted_tier": 0,
+      "attempts": [
+        {
+          "tier": 0,
+          "photons": 60000000,
+          "valid": true,
+          "converged": true,
+          "repeats": [
+            {
+              "repeat": 1,
+              "run_id": "C_z3.300_m0.508_r1",
+              "seed": 31010406,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.42025890000014
+              },
+              "diagnostics": {
+                "central_contrast": 0.1376398409994165,
+                "fwhm_mm": 8.498823295304163,
+                "edge_abs_contrast": 0.004219291450063046
+              }
+            },
+            {
+              "repeat": 2,
+              "run_id": "C_z3.300_m0.508_r2",
+              "seed": 31020406,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.46337810000023
+              },
+              "diagnostics": {
+                "central_contrast": 0.13748015088151827,
+                "fwhm_mm": 8.764546612630353,
+                "edge_abs_contrast": 0.003135173276310362
+              }
+            },
+            {
+              "repeat": 3,
+              "run_id": "C_z3.300_m0.508_r3",
+              "seed": 31030406,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.5174761000003
+              },
+              "diagnostics": {
+                "central_contrast": 0.1364462651112133,
+                "fwhm_mm": 8.704543385413672,
+                "edge_abs_contrast": 0.0031178404922291916
+              }
+            }
+          ],
+          "comparisons": [
+            {
+              "candidate_repeat": 2,
+              "contrast_absolute_difference": 0.00015969011789823684,
+              "contrast_relative_difference": 0.0011602027199298626,
+              "fwhm_relative_difference": 0.03126589506490966,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            },
+            {
+              "candidate_repeat": 3,
+              "contrast_absolute_difference": 0.0011935758882032077,
+              "contrast_relative_difference": 0.008671732541512218,
+              "fwhm_relative_difference": 0.024205714480871103,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "condition_id": "z4.800_m0.508",
+      "depth_mm": 4.8,
+      "mua_mm_inv": 0.508,
+      "mua_group": "standard",
+      "accepted": true,
+      "accepted_tier": 0,
+      "attempts": [
+        {
+          "tier": 0,
+          "photons": 60000000,
+          "valid": true,
+          "converged": true,
+          "repeats": [
+            {
+              "repeat": 1,
+              "run_id": "C_z4.800_m0.508_r1",
+              "seed": 31010409,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.31039110000029
+              },
+              "diagnostics": {
+                "central_contrast": 0.06810468248960486,
+                "fwhm_mm": 10.573418019021794,
+                "edge_abs_contrast": 0.002328060957593832
+              }
+            },
+            {
+              "repeat": 2,
+              "run_id": "C_z4.800_m0.508_r2",
+              "seed": 31020409,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.33634389999997
+              },
+              "diagnostics": {
+                "central_contrast": 0.06714771995889349,
+                "fwhm_mm": 10.631778106107536,
+                "edge_abs_contrast": 0.0024081343693600583
+              }
+            },
+            {
+              "repeat": 3,
+              "run_id": "C_z4.800_m0.508_r3",
+              "seed": 31030409,
+              "validity": {
+                "pass": true,
+                "checks": {
+                  "config_hash": true,
+                  "engine_version": true,
+                  "seed": true,
+                  "photons": true,
+                  "initial_energy": true,
+                  "finite_reflectance": true,
+                  "positive_reflectance_map": true,
+                  "collection_layer": true,
+                  "depth_mua": true,
+                  "voxelized_top": true
+                },
+                "runtime_s": 66.38922090000005
+              },
+              "diagnostics": {
+                "central_contrast": 0.06951177465237829,
+                "fwhm_mm": 10.350186715122415,
+                "edge_abs_contrast": 0.0027390360222367353
+              }
+            }
+          ],
+          "comparisons": [
+            {
+              "candidate_repeat": 2,
+              "contrast_absolute_difference": 0.0009569625307113694,
+              "contrast_relative_difference": 0.01405134706938007,
+              "fwhm_relative_difference": 0.0055195100563271695,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            },
+            {
+              "candidate_repeat": 3,
+              "contrast_absolute_difference": 0.0014070921627734323,
+              "contrast_relative_difference": 0.020660725684877885,
+              "fwhm_relative_difference": 0.021112501510654462,
+              "weak_signal": false,
+              "pass": true,
+              "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

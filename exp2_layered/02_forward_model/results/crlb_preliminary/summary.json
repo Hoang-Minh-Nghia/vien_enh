@@ -1,0 +1,26 @@
+{
+  "sigma_levels": [
+    0.001,
+    0.003,
+    0.01
+  ],
+  "mc_noise_sd_per_bin": 0.002260370365061215,
+  "rho_range": [
+    -0.9490870214851489,
+    0.5446450416189524
+  ],
+  "penalty_range": [
+    1.000025048361836,
+    3.1744620001881443
+  ],
+  "spearman_crlb_unknown_vs_MAE_F_sigma0.003": [
+    0.39110864128924705,
+    0.002002397133871701
+  ],
+  "spearman_penalty_vs_MAE_F": [
+    0.37260350097249245,
+    0.0033697195077516447
+  ],
+  "max_abs_rho_repeat_spread": 0.2733774883279958,
+  "note": "Preliminary: coarse depth grid (0.3-0.5 mm), only mua varied, homogeneous background, assumed white noise."
+}

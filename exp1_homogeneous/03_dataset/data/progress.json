@@ -1,0 +1,65 @@
+{
+  "completed_absorptions": [
+    0.15,
+    0.3,
+    0.508,
+    1.0
+  ],
+  "checks": [
+    {
+      "kind": "interpolation",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 2.25,
+      "contrast_absolute_difference": 0.006325866833262861,
+      "contrast_relative_difference": 0.03896126888186134,
+      "fwhm_relative_difference": 0.025920824224827423,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "independent_seed",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 5.0,
+      "contrast_absolute_difference": 0.0001681059314212474,
+      "contrast_relative_difference": 0.004152141546671404,
+      "fwhm_relative_difference": 0.039734989695369795,
+      "weak_signal": true,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "interpolation",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 4.75,
+      "contrast_absolute_difference": 0.0013976163800310526,
+      "contrast_relative_difference": 0.024156371095652194,
+      "fwhm_relative_difference": 0.01102307315483069,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "interpolation",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 0.625,
+      "contrast_absolute_difference": 0.004807256600604548,
+      "contrast_relative_difference": 0.006914509833120662,
+      "fwhm_relative_difference": 0.008809075639482421,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "independent_seed",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 0.5,
+      "contrast_absolute_difference": 0.0009286537746012735,
+      "contrast_relative_difference": 0.001230800692888211,
+      "fwhm_relative_difference": 0.0019638751686147215,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    }
+  ]
+}

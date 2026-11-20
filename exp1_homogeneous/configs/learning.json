@@ -1,0 +1,10 @@
+{
+  "schema": "reflection-fk-learning/1.0",
+  "architecture": {"channels": [16, 32, 64], "kernel": 5, "padding": 2, "stride": 1, "hidden": 32, "pool": "global_mean"},
+  "training": {"optimizer": "Adam", "learning_rate": 0.001, "batch_size": 64, "max_epochs": 100, "early_stopping_patience": 10, "loss": "MAE", "seeds": [42, 43, 44], "cpu_threads": 4},
+  "dataset": {"n_scenes": 6000, "train": 4800, "validation": 600, "test": 600, "depth_range_mm": [0.5, 5.0], "shift_range_mm": [-2.0, 2.0], "seed": 20261103},
+  "trial_dataset": {"train": 960, "validation": 120, "test": 120, "seed": 20261113},
+  "observation": "ideal; no additional camera noise or blur; inherent MC estimation noise remains",
+  "main_metric": "MAE on shared F test with mua 0.15 or 0.30 mm^-1",
+  "checkpoint_selection": "minimum MAE on the corresponding branch validation set"
+}

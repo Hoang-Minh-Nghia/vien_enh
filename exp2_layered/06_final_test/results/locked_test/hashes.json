@@ -1,0 +1,15 @@
+{
+ "t5b_variants/hetero_seed42.pt": "b0c908e98173e78b2b7240410001a9754fa7ce5e5d85277a21b30dd5a1d2b5e7",
+ "t5b_variants/hetero_seed43.pt": "eaa7b263a6b6397224c53de36b33e8b0d2105c863945428746aae10e23e69e7c",
+ "t5b_variants/hetero_seed44.pt": "d0f3086e88015f6a6d3e790baadd2433d5187043620ea310950c2a28490afcd9",
+ "t5b_variants/wide_seed42.pt": "92da4cfd1c19b8e559c4d1d5fca939336a56d332268f69dd0fe7641ababf5650",
+ "t5b_variants/wide_seed43.pt": "012a6949100b4cd3faac9941b3f3cf8dfc7b4f4daec2379b1e60c0278005c1a1",
+ "t5b_variants/wide_seed44.pt": "2ec1049dcf26ba7b31fe025d3620b57920b873dd9015597d91ea9583e81b95e7",
+ "t5_layered/models/F_layered_seed42.pt": "e0db287318c04d1ebaba3873bc72a4d44194744e64016038afb316f5e1604fa5",
+ "t5_layered/models/F_layered_seed43.pt": "e3f3571badacfdce0b3b3b46c1496ec53dde5f713f64dd236b5d39ae8c46ef09",
+ "t5_layered/models/F_layered_seed44.pt": "97c0ae495021357072317ae4678730c310185c195449ef49791daf894349c1ac",
+ "STAGE4/cnn_F_seed42.pt": "15f97faa2c6a2d07a52ee165434973037674b28eb49b5579805b391e46868a6b",
+ "STAGE4/cnn_F_seed43.pt": "1a69c8c5b65dea38d14ffb734e8211ff0ae2aa82061081ee27b776c6ace434e1",
+ "STAGE4/cnn_F_seed44.pt": "52cfa983414364bf8677bb111318070a34ec8f1f7278f6680ccde8152d18dc38",
+ "STAGE4/lut_FK.npz": "71e7ec1597c6d553e1138c1883580ee3ad57378314e7712143ca9fcabb5a080e"
+}

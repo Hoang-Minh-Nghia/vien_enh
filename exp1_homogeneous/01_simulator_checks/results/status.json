@@ -1,0 +1,18 @@
+{
+  "stage": 1,
+  "state": "simulations_complete",
+  "completed": [
+    "N0",
+    "channel_2mm",
+    "channel_2mm_repeat",
+    "channel_2mm_double",
+    "N0_fine",
+    "channel_2mm_fine",
+    "N0_wide",
+    "channel_2mm_wide",
+    "N0_longtime",
+    "channel_2mm_longtime"
+  ],
+  "total_jobs": 10,
+  "current": null
+}

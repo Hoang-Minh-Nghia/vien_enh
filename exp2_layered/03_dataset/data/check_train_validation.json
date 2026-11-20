@@ -1,0 +1,66 @@
+{
+  "train": {
+    "configs_expected": 300,
+    "configs_present": 300,
+    "missing": [],
+    "config_json_mismatch_vs_manifest": 0,
+    "nonfinite_files": 0,
+    "vessels": 1500,
+    "far_field_ratio_mean": 0.9999530542302829,
+    "far_field_ratio_std": 0.0006011719507252308,
+    "far_field_ratio_min_max": [
+      0.9979720898011635,
+      1.0018142607267961
+    ],
+    "n0_scalar_min_max": [
+      0.0005662632615482531,
+      0.0014525666343761258
+    ],
+    "n0_lateral_ripple_median_max": [
+      0.011795900250945212,
+      0.014102154378937536
+    ],
+    "contrast_smoothed_min_median_max": [
+      0.009890634550902111,
+      0.07318739603621949,
+      0.345810711501632
+    ],
+    "corr_depth_vs_log_contrast": -0.9175473765044881,
+    "argmin_x_abs_median_max_mm": [
+      0.25,
+      5.050000000000004
+    ]
+  },
+  "validation": {
+    "configs_expected": 30,
+    "configs_present": 30,
+    "missing": [],
+    "config_json_mismatch_vs_manifest": 0,
+    "nonfinite_files": 0,
+    "vessels": 150,
+    "far_field_ratio_mean": 1.0001283475001215,
+    "far_field_ratio_std": 0.0005446976117618922,
+    "far_field_ratio_min_max": [
+      0.9989153234792337,
+      1.0017302053677497
+    ],
+    "n0_scalar_min_max": [
+      0.0005727556569624236,
+      0.0013634644088694283
+    ],
+    "n0_lateral_ripple_median_max": [
+      0.012085019089200608,
+      0.013855544312314751
+    ],
+    "contrast_smoothed_min_median_max": [
+      0.009840950526647796,
+      0.06664462309263613,
+      0.24822870817210674
+    ],
+    "corr_depth_vs_log_contrast": -0.9302202081766856,
+    "argmin_x_abs_median_max_mm": [
+      0.25,
+      2.950000000000003
+    ]
+  }
+}

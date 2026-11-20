@@ -1,0 +1,121 @@
+{
+  "pass": true,
+  "n_channel_runs_compared": 9,
+  "same_seed_note": "Both GPUs used the same manifest seeds; agreement is a cross-hardware consistency check, not an independent-repeat estimate.",
+  "cnn_predictions_opened": false,
+  "n0": [
+    {
+      "run_id": "N0_r1",
+      "mean_R_new": 0.001330112456344068,
+      "mean_R_amd": 0.001330023747868836,
+      "mean_relative_difference": 6.663799285888672e-05,
+      "pixel_rms_relative_difference": 0.027065102010965347
+    },
+    {
+      "run_id": "N0_r2",
+      "mean_R_new": 0.0013299620477482677,
+      "mean_R_amd": 0.0013299549464136362,
+      "mean_relative_difference": 5.364418029785156e-06,
+      "pixel_rms_relative_difference": 0.02694910392165184
+    },
+    {
+      "run_id": "N0_r3",
+      "mean_R_new": 0.0013299398124217987,
+      "mean_R_amd": 0.0013298906851559877,
+      "mean_relative_difference": 3.695487976074219e-05,
+      "pixel_rms_relative_difference": 0.02683808095753193
+    }
+  ],
+  "channel": [
+    {
+      "run_id": "C_z0.600_m0.150_r1",
+      "profile_mae": 0.002339491620659828,
+      "contrast_absolute_difference": 0.0006476929985324009,
+      "contrast_relative_difference": 0.001371721661928543,
+      "fwhm_relative_difference": 0.006023080501118974,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z0.600_m0.150_r2",
+      "profile_mae": 0.002378361765295267,
+      "contrast_absolute_difference": 0.0001488369533775291,
+      "contrast_relative_difference": 0.00031550955672175865,
+      "fwhm_relative_difference": 0.006848795229631508,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z0.600_m0.150_r3",
+      "profile_mae": 0.0024917712435126305,
+      "contrast_absolute_difference": 0.0017426936365079193,
+      "contrast_relative_difference": 0.0037043728851291202,
+      "fwhm_relative_difference": 0.01302710173552748,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z3.300_m0.150_r1",
+      "profile_mae": 0.002305225469172001,
+      "contrast_absolute_difference": 0.001056625544266554,
+      "contrast_relative_difference": 0.010864823840725353,
+      "fwhm_relative_difference": 0.006246408887221185,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z3.300_m0.150_r2",
+      "profile_mae": 0.0024986062198877335,
+      "contrast_absolute_difference": 0.00021573072723928,
+      "contrast_relative_difference": 0.0022038013396080717,
+      "fwhm_relative_difference": 0.019982897891674838,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z3.300_m0.150_r3",
+      "profile_mae": 0.0023026419803500175,
+      "contrast_absolute_difference": 0.001656263617109896,
+      "contrast_relative_difference": 0.01710559734078145,
+      "fwhm_relative_difference": 0.005034297484826343,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z4.800_m0.150_r1",
+      "profile_mae": 0.0022682566195726395,
+      "contrast_absolute_difference": 0.0019275597537650804,
+      "contrast_relative_difference": 0.0407125299663205,
+      "fwhm_relative_difference": 0.025423701941170527,
+      "weak_signal": true,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z4.800_m0.150_r2",
+      "profile_mae": 0.0027416269294917583,
+      "contrast_absolute_difference": 0.0020959662709610083,
+      "contrast_relative_difference": 0.04482364488690499,
+      "fwhm_relative_difference": 0.06067008349418708,
+      "weak_signal": true,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "run_id": "C_z4.800_m0.150_r3",
+      "profile_mae": 0.002619705628603697,
+      "contrast_absolute_difference": 0.00014324726724800757,
+      "contrast_relative_difference": 0.003081493102997253,
+      "fwhm_relative_difference": 0.014833626418094697,
+      "weak_signal": true,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    }
+  ]
+}

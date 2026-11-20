@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "detp_shape": [
+    14,
+    23957
+  ],
+  "keys": [
+    "detp",
+    "dref",
+    "flux",
+    "prop",
+    "stat"
+  ]
+}

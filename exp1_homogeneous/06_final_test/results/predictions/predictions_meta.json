@@ -1,0 +1,12 @@
+{
+  "selection_sha256": "82510f4e96d510b9a3ab5918a89d842c3e4e0efd00d49bcf632f5bee7497bb95",
+  "predictions_sha256": "f2e86c31e56b64cfe2d06d77d0e568cec61b80f87f6387bf060e4ff3fb972632",
+  "n_inputs": 180,
+  "n_model_predictions": 1080,
+  "readout_version": "pixelwise_N0_then_y_mean_then_x_bin/v1",
+  "python": "3.12.10",
+  "numpy": "2.2.6",
+  "torch": "2.11.0+cpu",
+  "completed_local": "2026-11-10T01:17:39+0700",
+  "note": "Same inputs scored by six models; not independent samples."
+}

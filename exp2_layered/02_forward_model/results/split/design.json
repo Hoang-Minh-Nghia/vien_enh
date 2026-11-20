@@ -1,0 +1,41 @@
+{
+  "cfg": {
+    "geometry": {
+      "width_mm": 60.0,
+      "length_mm": 8.0,
+      "thickness_mm": 20.0,
+      "voxel_mm": 0.1,
+      "epidermis_mm": 0.1,
+      "dermis_mm": 1.1,
+      "fat_mm": 6.0
+    },
+    "optics": {
+      "epi_mua": 0.01,
+      "epi_musp": 1.0,
+      "derm_mua": 0.01,
+      "derm_musp": 1.0,
+      "fat_mua": 0.01,
+      "fat_musp": 1.0,
+      "musc_mua": 0.01,
+      "musc_musp": 1.0,
+      "n": 1.35
+    },
+    "mc": {
+      "boundary": "ccrcca",
+      "tend_s": 5e-09,
+      "gpuid": 1
+    }
+  },
+  "g": 0.511,
+  "vessel": {
+    "diameter_mm": 3.0,
+    "mua": 0.46,
+    "mus": 74.2,
+    "g": 0.9832
+  },
+  "points": [
+    1.6,
+    2.6,
+    3.6
+  ]
+}

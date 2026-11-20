@@ -1,0 +1,48 @@
+{
+  "schema": "reflection-fk/1.0",
+  "wavelength_nm": 850,
+  "geometry": {
+    "width_mm": 60.0,
+    "length_mm": 8.0,
+    "thickness_mm": 20.0,
+    "voxel_mm": 0.1,
+    "diameter_mm": 3.0,
+    "channel_axis": "y",
+    "depth_definition": "surface_to_upper_channel_edge"
+  },
+  "optics": {
+    "background_mua_mm_inv": 0.010,
+    "background_musp_mm_inv": 1.0,
+    "background_g": 0.511,
+    "background_n": 1.35,
+    "channel_mus_mm_inv": 0.0,
+    "channel_n": 1.35,
+    "channel_mua_levels_mm_inv": [0.15, 0.30, 0.508, 1.0]
+  },
+  "mc": {
+    "boundary": "ccrcca",
+    "source": "planar",
+    "tend_s": 5e-9,
+    "batch_photons": 6000000,
+    "channel_photons": 60000000,
+    "background_photons": 120000000,
+    "gpuid": 1,
+    "seed": 20261103
+  },
+  "profile": {
+    "width_mm": 32.0,
+    "length_mm": 8.0,
+    "points": 128,
+    "diagnostic_smoothing_sigma_mm": 0.25,
+    "relative_tolerance": 0.10,
+    "weak_contrast_absolute_tolerance": 0.005
+  },
+  "depths_mm": [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0],
+  "observation": {
+    "mode": "ideal_surface_reflectance",
+    "dark_offset": 0.0,
+    "camera_noise": null,
+    "camera_blur": null,
+    "note": "No measured camera properties. Periodic y represents an infinitely long straight channel; the simulated readout spans 8 mm along y."
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "config": {
+    "schema": "reflection-fk/1.0",
+    "wavelength_nm": 850,
+    "geometry": {
+      "width_mm": 60.0,
+      "length_mm": 8.0,
+      "thickness_mm": 20.0,
+      "voxel_mm": 0.1,
+      "diameter_mm": 3.0,
+      "channel_axis": "y",
+      "depth_definition": "surface_to_upper_channel_edge"
+    },
+    "optics": {
+      "background_mua_mm_inv": 0.01,
+      "background_musp_mm_inv": 1.0,
+      "background_g": 0.511,
+      "background_n": 1.35,
+      "channel_mus_mm_inv": 0.0,
+      "channel_n": 1.35,
+      "channel_mua_levels_mm_inv": [
+        0.15,
+        0.3,
+        0.508,
+        1.0
+      ]
+    },
+    "mc": {
+      "boundary": "ccrcca",
+      "source": "planar",
+      "tend_s": 5e-09,
+      "batch_photons": 6000000,
+      "channel_photons": 60000000,
+      "background_photons": 120000000,
+      "gpuid": 1,
+      "seed": 20261103
+    },
+    "profile": {
+      "width_mm": 32.0,
+      "length_mm": 8.0,
+      "points": 128,
+      "diagnostic_smoothing_sigma_mm": 0.25,
+      "relative_tolerance": 0.1,
+      "weak_contrast_absolute_tolerance": 0.005
+    },
+    "depths_mm": [
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5,
+      5.0
+    ],
+    "observation": {
+      "mode": "ideal_surface_reflectance",
+      "dark_offset": 0.0,
+      "camera_noise": null,
+      "camera_blur": null,
+      "note": "No measured camera properties. Periodic y represents an infinitely long straight channel; the simulated readout spans 8 mm along y."
+    }
+  },
+  "depth_mm": 3.3,
+  "mua_mm_inv": 0.4,
+  "photons": 60000000,
+  "seed": 31030306,
+  "pmcxcl_version": "0.7.5",
+  "identity_hash": "efdd4bec9f70d48ef13de9f9f1a42aa066b8b33506e045dc292ad780f4495e52",
+  "geometry_check": {
+    "shape_xyz": [
+      600,
+      80,
+      201
+    ],
+    "top_air_layer": true,
+    "voxel_mm": 0.1,
+    "channel_voxels_cross_section": 716,
+    "voxelized_top_mm": 3.3000000000000003,
+    "voxelized_bottom_mm": 6.3,
+    "voxelized_width_mm": 3.0
+  },
+  "python": "3.12.10",
+  "numpy": "2.5.4",
+  "readout": "MCX dref at top air layer z=0, summed over time; all exiting directions",
+  "started_local": "2026-11-10T00:09:56+0700",
+  "batches": [
+    {
+      "seed": 279064090,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 5999,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2148963.784638405,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 141398457,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6008,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2149484.0745983124,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 876698723,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6008,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2149342.3562629223,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 739888651,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6011,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2149995.8735044003,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 1597927996,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 5992,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2146761.461555958,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 1667334456,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6001,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2149324.839398861,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 1039751599,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6002,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2148383.273606539,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 1245267864,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6008,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2149734.612581253,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 103645631,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 6008,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2149220.3635168076,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    },
+    {
+      "seed": 1885131587,
+      "requested_photons": 6000000,
+      "stat": {
+        "runtime": 5998,
+        "nphoton": 6000000,
+        "energytot": 6000000.0,
+        "energyabs": 2147885.8058855534,
+        "normalizer": 1.6666666851961054e-05,
+        "unitinmm": 0.10000000149011612,
+        "workload": [
+          1792.0
+        ]
+      }
+    }
+  ],
+  "runtime_s": 66.3735396000011
+}

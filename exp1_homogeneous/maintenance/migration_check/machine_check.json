@@ -1,0 +1,77 @@
+{
+  "python": "3.12.10",
+  "pmcxcl": "0.7.5",
+  "locked_pmcxcl": "0.7.5",
+  "manifest_amendments": 1,
+  "checks": {
+    "manifest_and_locked_files": true,
+    "checkpoints": true,
+    "training_data": true,
+    "python_3_12": true,
+    "pmcxcl_version": true,
+    "selected_gpu": true,
+    "smoke_N0_valid": true,
+    "smoke_channel_valid": true,
+    "smoke_matches_original_reference": true
+  },
+  "opencl_devices": [
+    "NVIDIA GeForce RTX 3060"
+  ],
+  "gpuid": 1,
+  "selected_device": "NVIDIA GeForce RTX 3060",
+  "smoke_photons": 6000000,
+  "n0_validity": {
+    "pass": true,
+    "checks": {
+      "config_hash": true,
+      "engine_version": true,
+      "seed": true,
+      "photons": true,
+      "initial_energy": true,
+      "finite_reflectance": true,
+      "positive_reflectance_map": true,
+      "collection_layer": true,
+      "no_channel": true,
+      "strictly_positive_N0": true
+    },
+    "runtime_s": 7.36031869999988
+  },
+  "channel_validity": {
+    "pass": true,
+    "checks": {
+      "config_hash": true,
+      "engine_version": true,
+      "seed": true,
+      "photons": true,
+      "initial_energy": true,
+      "finite_reflectance": true,
+      "positive_reflectance_map": true,
+      "collection_layer": true,
+      "depth_mua": true,
+      "voxelized_top": true
+    },
+    "runtime_s": 6.651034199999913
+  },
+  "reference_diagnostics": {
+    "central_contrast": 0.27360594406545014,
+    "fwhm_mm": 6.779942451986425,
+    "edge_abs_contrast": 0.0045417705282046325
+  },
+  "smoke_diagnostics": {
+    "central_contrast": 0.2723960949343971,
+    "fwhm_mm": 6.297032206366537,
+    "edge_abs_contrast": 0.01061748827733067
+  },
+  "agreement": {
+    "contrast_absolute_difference": 0.0012098491310530424,
+    "contrast_relative_difference": 0.004421867131525588,
+    "fwhm_relative_difference": 0.07122630450622817,
+    "weak_signal": false,
+    "pass": true,
+    "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+  },
+  "photons_per_second": 902115.3432048325,
+  "estimated_matrix_hours_tier0": 3.4363676699999552,
+  "scope": "Short smoke run on this machine; not part of the validation set.",
+  "pass": true
+}

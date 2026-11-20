@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv*/
+*.egg-info/
+
+# Logs and partial runs
+*.log
+*.partial.npz
+
+# Real-hand data and everything derived from it: never committed (consent / privacy)
+real_hand/data/
+real_hand/results/
+real_hand/figs/
+My_DATASET/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

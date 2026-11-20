@@ -1,0 +1,994 @@
+{
+  "config": {
+    "schema": "reflection-fk/1.0",
+    "wavelength_nm": 850,
+    "geometry": {
+      "width_mm": 60.0,
+      "length_mm": 8.0,
+      "thickness_mm": 20.0,
+      "voxel_mm": 0.05,
+      "diameter_mm": 3.0,
+      "channel_axis": "y",
+      "depth_definition": "surface_to_upper_channel_edge"
+    },
+    "optics": {
+      "background_mua_mm_inv": 0.01,
+      "background_musp_mm_inv": 1.0,
+      "background_g": 0.511,
+      "background_n": 1.35,
+      "channel_mus_mm_inv": 0.0,
+      "channel_n": 1.35,
+      "channel_mua_levels_mm_inv": [
+        0.15,
+        0.3,
+        0.508,
+        1.0
+      ]
+    },
+    "mc": {
+      "boundary": "ccrcca",
+      "source": "planar",
+      "tend_s": 5e-09,
+      "batch_photons": 1000000,
+      "channel_photons": 60000000,
+      "background_photons": 120000000,
+      "gpuid": 1,
+      "seed": 20261103
+    },
+    "profile": {
+      "width_mm": 32.0,
+      "length_mm": 8.0,
+      "points": 128,
+      "diagnostic_smoothing_sigma_mm": 0.25,
+      "relative_tolerance": 0.1,
+      "weak_contrast_absolute_tolerance": 0.005
+    },
+    "depths_mm": [
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5,
+      5.0
+    ],
+    "observation": {
+      "mode": "ideal_surface_reflectance",
+      "dark_offset": 0.0,
+      "camera_noise": null,
+      "camera_blur": null,
+      "note": "No measured camera properties. Periodic y represents an infinitely long straight channel; the simulated readout spans 8 mm along y."
+    }
+  },
+  "depth_mm": 2.0,
+  "mua_mm_inv": 0.508,
+  "photons": 60000000,
+  "seed": 3102,
+  "pmcxcl_version": "0.7.5",
+  "identity_hash": "0cf23d7a002be19d6f554d1b725e0f313817aad84b3aae7e9b5db429b2193657",
+  "geometry_check": {
+    "shape_xyz": [
+      1200,
+      160,
+      401
+    ],
+    "top_air_layer": true,
+    "voxel_mm": 0.05,
+    "channel_voxels_cross_section": 2828,
+    "voxelized_top_mm": 2.0,
+    "voxelized_bottom_mm": 5.000000000000001,
+    "voxelized_width_mm": 3.0
+  },
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "readout": "MCX dref at top air layer z=0, summed over time; all exiting directions",
+  "started_local": "2026-11-03T21:12:37+0700",
+  "batches": [
+    {
+      "seed": 1944009545,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3409,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368574.19414407015,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1767624923,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3441,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368459.7741293609,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 911670304,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3448,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368569.6282154701,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1637730409,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3434,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 367792.64064753056,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1248022257,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3448,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368635.9962526858,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1140597643,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3438,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368380.5565601222,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1723457169,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3358,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368512.8383177519,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 491661719,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3420,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368338.27186693344,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 971505813,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3407,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368662.1423408985,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 274114547,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3407,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 369472.2542668432,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1729148979,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3413,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 369234.81538432837,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1183382843,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3421,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368759.2864495814,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1875047493,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3449,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368947.21680575423,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 146197786,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3387,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368539.23308834434,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1081068639,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3390,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368454.0237977654,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1568074469,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3409,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368372.6831475347,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 442583973,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3307,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368444.8543191552,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1481879167,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3430,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368680.44145226106,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 150376032,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3380,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368451.4085970968,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 243350314,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3415,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368018.74480330944,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1815220962,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3476,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 367987.21307590604,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1597525620,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3414,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368124.0204888582,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1183539645,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3400,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368394.08416587114,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1337271640,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3410,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368416.50068983436,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 596416787,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3445,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368312.5252374634,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 278069231,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3430,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368283.96517042443,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 2050688188,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3414,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368193.48251628876,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 33703304,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3409,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 367934.64336648583,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 295739409,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3378,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368591.3213429004,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 731000501,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3451,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 369058.93523987196,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1679726147,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3449,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368433.3947650306,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 724375232,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3457,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368527.1590746939,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 202979585,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3421,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368353.3050105572,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1398162080,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3407,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368126.6155195981,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1664454541,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3483,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368470.49089083076,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 528366959,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3412,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368223.8055935353,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 397640833,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3389,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368666.519532138,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1911526652,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3452,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 369383.6610272229,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 229144047,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3421,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368351.73956519365,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 272200317,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3424,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368636.94317916036,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 946697343,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3403,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368210.9508422315,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 230439766,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3407,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 367610.13434010744,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 614250687,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3445,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368203.18003222346,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 2039597253,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3420,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368583.23051582277,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1243481776,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3429,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368607.07749176025,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 845226711,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3392,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368091.1782581657,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 411813447,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3416,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368752.34974327683,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1617478913,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3425,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368392.33473847667,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1695581417,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3401,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368286.3247986436,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 19281739,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3378,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368287.0959086418,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 874421795,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3419,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368228.6413883086,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1989074212,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3440,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368152.37212405086,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 561069529,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3393,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368217.91564936936,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 2122053975,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3444,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368385.4136722088,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 938742928,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3425,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368801.74196374416,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1318578987,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3409,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368493.36476465315,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1951570212,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3461,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368202.8322321186,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1052059498,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3510,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368588.78690541536,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1233840765,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3413,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368361.2802732736,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    },
+    {
+      "seed": 1624247600,
+      "requested_photons": 1000000,
+      "stat": {
+        "runtime": 3454,
+        "nphoton": 1000000,
+        "energytot": 1000000.0,
+        "energyabs": 368623.79362401366,
+        "normalizer": 0.00039999998989515007,
+        "unitinmm": 0.05000000074505806,
+        "workload": [
+          896.0
+        ]
+      }
+    }
+  ],
+  "runtime_s": 313.20701640000334
+}

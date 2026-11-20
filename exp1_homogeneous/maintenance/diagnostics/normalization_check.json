@@ -1,0 +1,5 @@
+{
+  "coarse_integrated_top_reflectance": 0.6383478108733835,
+  "fine_integrated_top_reflectance": 0.638302633175806,
+  "note": "Integral of dref density over top voxel area; one-million-photon smoke runs"
+}

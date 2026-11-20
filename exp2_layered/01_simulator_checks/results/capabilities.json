@@ -1,0 +1,103 @@
+{
+  "pmcxcl": "0.7.5",
+  "probes": [
+    {
+      "probe": "baseline_dref",
+      "ok": true,
+      "keys": [
+        "dref",
+        "flux",
+        "stat"
+      ],
+      "dref_shape": [
+        40,
+        40,
+        30,
+        1
+      ]
+    },
+    {
+      "probe": "savedet_ppath_exitpos_dir",
+      "ok": true,
+      "keys": [
+        "detp",
+        "dref",
+        "flux",
+        "stat"
+      ],
+      "detp_keys": "<class 'numpy.ndarray'>",
+      "detp_shapes": null
+    },
+    {
+      "probe": "pattern_source",
+      "ok": true,
+      "keys": [
+        "dref",
+        "flux",
+        "stat"
+      ],
+      "dref_top_left_mean": 0.024053946137428284,
+      "dref_top_right_mean": 0.023391934111714363
+    },
+    {
+      "probe": "oblique_pencil",
+      "ok": true,
+      "keys": [
+        "dref",
+        "flux",
+        "stat"
+      ],
+      "dref_shape": [
+        40,
+        40,
+        30,
+        1
+      ]
+    },
+    {
+      "probe": "line_source",
+      "ok": true,
+      "keys": [
+        "dref",
+        "flux",
+        "stat"
+      ],
+      "dref_shape": [
+        40,
+        40,
+        30,
+        1
+      ]
+    },
+    {
+      "probe": "polarization_polprop",
+      "ok": false,
+      "error": "ValueError: the 'polprop' field must have 5 columns (mua, radius, rho, n_sph,n_bkg)",
+      "trace": "Traceback (most recent call last):\n  File \"C:\\fk\\forward_v3\\code\\t1_capabilities.py\", line 30, in probe\n    res = pmcxcl.run(cfg)\n          ^^^^^^^^^^^^^^^\nValueError: the 'polprop' field must have 5 columns (mua, radius, rho, n_sph,n_bkg)\n"
+    },
+    {
+      "probe": "no_volume_output",
+      "ok": true,
+      "keys": [],
+      "has_flux": false,
+      "dref_shape": [
+        0
+      ]
+    },
+    {
+      "probe": "scattering_channel_g098",
+      "ok": true,
+      "keys": [
+        "dref",
+        "flux",
+        "stat"
+      ],
+      "dref_shape": [
+        40,
+        40,
+        30,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "base": {
+    "geometry": {
+      "width_mm": 60.0,
+      "length_mm": 8.0,
+      "thickness_mm": 20.0,
+      "voxel_mm": 0.1,
+      "epidermis_mm": 0.06,
+      "dermis_mm": 1.1,
+      "fat_mm": 6.0
+    },
+    "optics": {
+      "epi_mua": 0.37224999999999997,
+      "epi_musp": 3.71,
+      "derm_mua": 0.02,
+      "derm_musp": 2.28,
+      "fat_mua": 0.01,
+      "fat_musp": 1.29,
+      "musc_mua": 0.026,
+      "musc_musp": 0.8,
+      "n": 1.37
+    },
+    "mc": {
+      "boundary": "ccrcca",
+      "tend_s": 5e-09,
+      "gpuid": 1
+    }
+  },
+  "vessel": {
+    "diameter_mm": 3.0,
+    "mua": 0.46,
+    "mus": 74.2,
+    "g": 0.9832
+  },
+  "bg_steps": {
+    "epi_mua": [
+      "optics",
+      0.2
+    ],
+    "derm_musp": [
+      "optics",
+      0.2
+    ],
+    "fat_musp": [
+      "optics",
+      0.2
+    ],
+    "fat_mua": [
+      "optics",
+      0.2
+    ],
+    "dermis_mm": [
+      "geometry",
+      0.2
+    ]
+  },
+  "points": [
+    1.6,
+    2.6,
+    3.6
+  ],
+  "depth_step": 0.2,
+  "mua_step": 0.1,
+  "d_step": 0.4,
+  "photons": 60000000,
+  "n0_photons": 120000000,
+  "seed": 20261112
+}

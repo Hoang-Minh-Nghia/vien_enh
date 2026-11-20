@@ -1,0 +1,15 @@
+{
+  "cnn": {
+    "n": 120,
+    "mae_mm": 0.06377353519201279,
+    "rmse_mm": 0.0964006707072258,
+    "bias_mm": -0.016589296981692314
+  },
+  "constant_training_mean": {
+    "n": 120,
+    "mae_mm": 1.1266158819198608,
+    "rmse_mm": 1.304227460789061,
+    "bias_mm": -0.1007726550102234
+  },
+  "scope": "Development CNN test on interpolated MC data; no physical validation"
+}

@@ -1,0 +1,353 @@
+{
+  "gate_pass": true,
+  "checks": [
+    {
+      "kind": "interpolation",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 2.25,
+      "contrast_absolute_difference": 0.006325866833262861,
+      "contrast_relative_difference": 0.03896126888186134,
+      "fwhm_relative_difference": 0.025920824224827423,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "independent_seed",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 5.0,
+      "contrast_absolute_difference": 0.0001681059314212474,
+      "contrast_relative_difference": 0.004152141546671404,
+      "fwhm_relative_difference": 0.039734989695369795,
+      "weak_signal": true,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "interpolation",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 4.75,
+      "contrast_absolute_difference": 0.0013976163800310526,
+      "contrast_relative_difference": 0.024156371095652194,
+      "fwhm_relative_difference": 0.01102307315483069,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "interpolation",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 0.625,
+      "contrast_absolute_difference": 0.004807256600604548,
+      "contrast_relative_difference": 0.006914509833120662,
+      "fwhm_relative_difference": 0.008809075639482421,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    },
+    {
+      "kind": "independent_seed",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 0.5,
+      "contrast_absolute_difference": 0.0009286537746012735,
+      "contrast_relative_difference": 0.001230800692888211,
+      "fwhm_relative_difference": 0.0019638751686147215,
+      "weak_signal": false,
+      "pass": true,
+      "rule": "absolute contrast tolerance for weak signals; relative contrast otherwise; relative FWHM for both"
+    }
+  ],
+  "sources": [
+    {
+      "path": "results\\stage2\\depth_0.500.npz",
+      "identity_hash": "7a86679b8da8230385929ee9f2e727c645f858a03a67ea3a86cbcf7795be9b83",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 0.5
+    },
+    {
+      "path": "results\\stage2\\depth_0.750.npz",
+      "identity_hash": "cadadadbcfc7250a88c6de72444aed21cbc89c4955fedfda4e65837478122125",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 0.75
+    },
+    {
+      "path": "results\\stage2\\depth_1.000.npz",
+      "identity_hash": "c5b043d4cf8eb450eeb66082ee76aa499165b77df109e3191000f154456cf3d5",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 1.0
+    },
+    {
+      "path": "results\\stage2\\depth_1.250.npz",
+      "identity_hash": "8ec6f3535822febb2e28edd00147bfa5056086b394cee3a062d205fce3fe1fa7",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 1.25
+    },
+    {
+      "path": "results\\stage2\\depth_1.500.npz",
+      "identity_hash": "2b5e46c6d9bf21bebc215fa3d164acd4b29547920c8b15e24694f33b88fbde4f",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 1.5
+    },
+    {
+      "path": "results\\stage1\\channel_2mm.npz",
+      "identity_hash": "3b98549650831dad762e11814fac938ad4d657509ebe90273cb49f932b707d38",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 2.0
+    },
+    {
+      "path": "results\\stage2\\depth_2.500.npz",
+      "identity_hash": "0c481378a981cff3c2bbbae60b3dd0df3b4354ce069636c1bd5102498b28e979",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 2.5
+    },
+    {
+      "path": "results\\stage2\\depth_3.000.npz",
+      "identity_hash": "30be4e12a1624ee801ab9654ddf139edd3bba4d5592e042690ed88538350b198",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 3.0
+    },
+    {
+      "path": "results\\stage2\\depth_3.500.npz",
+      "identity_hash": "4a985d33efef7c0770c4cd9600296a95cfff3d1e00523782bfe710194a7924a9",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 3.5
+    },
+    {
+      "path": "results\\stage2\\depth_4.000.npz",
+      "identity_hash": "519fa3141ab6b566b7c61738deff1793b6d25aa3da6c81cd7e1abd84d0dab2fe",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 4.0
+    },
+    {
+      "path": "results\\stage2\\depth_4.500.npz",
+      "identity_hash": "d2bbb0acb05fbf2e5eeab064414d227ca686a0a85dfd8ccdb98b31302d286617",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 4.5
+    },
+    {
+      "path": "results\\stage2\\depth_5.000.npz",
+      "identity_hash": "5938ab86cb429e437cf2f2b4fdc203f6fae239c76abdbfe95a608b2cd8b5b405",
+      "mua_mm_inv": 0.508,
+      "depth_mm": 5.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_0.500.npz",
+      "identity_hash": "ea0a064577a66bd321b8781a34af88965e75fcc4ea9cc1060db25080f70a34bb",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 0.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_0.750.npz",
+      "identity_hash": "634d796778f5d94c712b2fe904bb99ad85803abadb0be5b3d585659e4bbe2a22",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 0.75
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_1.000.npz",
+      "identity_hash": "4ba75430578fdac6383937e5bb562f1460fee143f5546bb819f9ff9f69befb68",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 1.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_1.250.npz",
+      "identity_hash": "deec2db00a61f68da8fe4a6421bfa949af4172fb89c84baa83e2a60c165e2200",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 1.25
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_1.500.npz",
+      "identity_hash": "5513cbffb532799b91f24c3c649fadc13b8ef6ea593fc28510342429a14036e4",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 1.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_2.000.npz",
+      "identity_hash": "cb3153811ab05f1707dce7a38bbffde05d53f15513c00c140f6406f5d9d0ab58",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 2.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_2.500.npz",
+      "identity_hash": "835f72f1602d8d86c8199b7a063ae37009ad1d3c0b676d119047e9e8b1487c82",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 2.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_3.000.npz",
+      "identity_hash": "274953bbd2c3c5efb64e06ae79ccd5700a6152542516bb786a3803137cf49a8e",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 3.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_3.500.npz",
+      "identity_hash": "2ed6e5e5f379667c5c456396b3577a03194623a394fd5bef3b30d676c5c8ae15",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 3.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_4.000.npz",
+      "identity_hash": "b214d13e65c66d432e464731b82cfa393fa00ca15c70914605dc90d2d41c12c9",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 4.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_4.500.npz",
+      "identity_hash": "d06e054424ce1ffbcc45e4934fa91014bba23540b3a562f7da7b15ab296c198a",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 4.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.150_depth_5.000.npz",
+      "identity_hash": "a40b2403415c581907e388841adf89c4658dc066f7b5d37926d120d3d827f5d5",
+      "mua_mm_inv": 0.15,
+      "depth_mm": 5.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_0.500.npz",
+      "identity_hash": "0a18df2450e1c75205d96251ea896659b5bb7b1868192ab1d20df56ec740ada6",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 0.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_0.750.npz",
+      "identity_hash": "82c13f0fb909779d5a194d43c6afe43071e95824e0aa8d5bedaa1f3e9e977959",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 0.75
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_1.000.npz",
+      "identity_hash": "db6ae745e03fdef18be5a84864c2fa8b82b6c87d35f9107fcd9cdf83ad50773f",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 1.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_1.250.npz",
+      "identity_hash": "2a92d9f88b04c84a77e8067330eabd8b2a3cd0370af1010d576fc7d3027235ad",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 1.25
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_1.500.npz",
+      "identity_hash": "82c94fa704ee8ec623d6f28f5a2a5adcc537e40f4f4ec56ef22264ef279c530a",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 1.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_2.000.npz",
+      "identity_hash": "f5257ebe7706c2f69ba2063c2a2b60fb38fdaba8f33b3dd7b037500f9bda3e12",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 2.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_2.500.npz",
+      "identity_hash": "78b98f32819f506dc8e5bfaec99af59dede4576711b839737463cb0047c56c47",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 2.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_3.000.npz",
+      "identity_hash": "290eec387669ef12218b416e293a08b0b0fd1c7511cae3641fc41e922765c094",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 3.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_3.500.npz",
+      "identity_hash": "5a04f8907e17ef4c870fa148365fd5ac4dc0403bd113ca6c5b2fefea132178aa",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 3.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_4.000.npz",
+      "identity_hash": "be5f08574fe8d6cbe74b55d742e1da516cd446f069a469dc2d5c5d20ef42fc5d",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 4.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_4.500.npz",
+      "identity_hash": "453623d0c6ca71809ee3c365aa8f5f86e1c467b0eae7aef48f89f6c2aeda555d",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 4.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_0.300_depth_5.000.npz",
+      "identity_hash": "a0818eca6a10b724954a49d1fa944c36f0915fc811938a240ffc2c051188882e",
+      "mua_mm_inv": 0.3,
+      "depth_mm": 5.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_0.500.npz",
+      "identity_hash": "663e130a4e5d25023657505830dc1c39dae24989563e3860549d60fdd1878694",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 0.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_0.750.npz",
+      "identity_hash": "8ee692400e88a6e8d6596d9c73f95a75d9165b94e02de08f168165a78d1326c4",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 0.75
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_1.000.npz",
+      "identity_hash": "e4fbce08b5f1f34bf98f38ffe46a8f71c52e66aebe45c9e72b7adefb0123af1e",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 1.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_1.250.npz",
+      "identity_hash": "b36bb829740a1c9e14b21b38776135751be243e30d580dd1cd71f3b58464bcc3",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 1.25
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_1.500.npz",
+      "identity_hash": "32bdd9d80e94027b0715557a8132d95c70a1743ba52444de0f46c4610d231726",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 1.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_2.000.npz",
+      "identity_hash": "045541c5f5c9e86d35d170b54399b433117793a3c7978261d20267b51430feae",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 2.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_2.500.npz",
+      "identity_hash": "292b1391ad290e292bf3eb9321feda44543d9dcb0392ccb380182a6dab895ec0",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 2.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_3.000.npz",
+      "identity_hash": "dd3a80a7d102fc651ef722ce0ac20c74b4673a1fc5b35b3c78a2312cb2fe7134",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 3.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_3.500.npz",
+      "identity_hash": "0e34ac7f22985c95cb73792ebc2e5fdadf38600f8223df753637c8be8f15ca94",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 3.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_4.000.npz",
+      "identity_hash": "48b63165753d193ef1f53e0b71a33463a4bc7d3559389b57dd0b7082a26da086",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 4.0
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_4.500.npz",
+      "identity_hash": "e25d482783ef8c02f99bcdb6ef32cdd94855659b55245da9e8ac49b700cef413",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 4.5
+    },
+    {
+      "path": "results\\stage4\\mc\\mua_1.000_depth_5.000.npz",
+      "identity_hash": "65060b4ffe7ee51307e921f34c9d6db011e1175342ea9ee185e338ba2e6cf175",
+      "mua_mm_inv": 1.0,
+      "depth_mm": 5.0
+    }
+  ],
+  "config_hash": "324f43edc8b4073ea5f792c94a630cec239431b90813d6d5ec81e5ea7a98c38d",
+  "readout_version": "pixelwise_N0_then_y_mean_then_x_bin/v1",
+  "scope": "Representative numerical checks; not exhaustive optical validation or physical camera validation"
+}

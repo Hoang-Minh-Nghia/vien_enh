@@ -1,0 +1,5922 @@
+{
+ "schema": "reflection-fk-validation/1.0",
+ "status": "locked_before_new_MC_and_before_CNN_predictions",
+ "locked_local": "2026-11-09T20:27:18+0700",
+ "design_source": "Ke_hoach_tiep_theo_kiem_chung_doc_lap_FK.md",
+ "amendment_policy": "Append dated entries to 'amendments' with a reason, before CNN predictions are opened. After a model is adjusted using these data they become development data and a new validation set is required.",
+ "amendments": [
+  {
+   "date": "2026-11-09",
+   "previous_manifest_sha256": "67bce1dccb0478a81eced66756f8a8e29e9a93e166f910910ea583b801a76bed",
+   "change": "MC execution moves from AMD Radeon RX 6600 to NVIDIA GeForce RTX 3060; pmcxcl 0.7.5 via OpenCL is unchanged.",
+   "reason": "Faster-hardware migration requested by the project owner.",
+   "effect_on_runs": "All 3 N0 and all channel runs are produced on the RTX 3060. The partial AMD pilot (3 N0, 9 of 18 channel runs) is archived in results/validation_independent_archive_AMD_RX6600 and is used only for a cross-hardware consistency check.",
+   "unchanged": "Design, conditions, seeds, photon tiers, quality plan, analysis plan, checkpoints and locked files.",
+   "cnn_predictions_opened": false
+  }
+ ],
+ "design": {
+  "depths_mm": [
+   0.6,
+   0.9,
+   1.4,
+   1.8,
+   2.3,
+   2.8,
+   3.3,
+   3.8,
+   4.3,
+   4.8
+  ],
+  "mua_mm_inv": [
+   0.15,
+   0.22,
+   0.3,
+   0.4,
+   0.508,
+   1.0
+  ],
+  "mua_groups": {
+   "0.15": "seen_weak",
+   "0.22": "unseen",
+   "0.3": "seen_weak",
+   "0.4": "unseen",
+   "0.508": "standard",
+   "1.0": "high"
+  },
+  "repeats": [
+   1,
+   2,
+   3
+  ],
+  "channel_x_mm": 0.0,
+  "observation": "ideal_surface_reflectance",
+  "lateral_shift_checks": "Not part of this lock; any such check must be reported separately and adds no independent MC conditions.",
+  "n_conditions": 60,
+  "n_channel_runs": 180,
+  "n_N0_runs": 3,
+  "n_predictions_planned": 1080,
+  "predictions_note": "Not independent samples: repeated MC of the same condition, and the same inputs scored by several models."
+ },
+ "pilot": {
+  "depths_mm": [
+   0.6,
+   3.3,
+   4.8
+  ],
+  "mua_mm_inv": [
+   0.15,
+   0.508
+  ],
+  "repeats": [
+   1,
+   2,
+   3
+  ],
+  "n_channel_runs": 18,
+  "n_N0_runs": 3,
+  "purpose": "Check numerical quality before the full matrix; CNN predictions stay closed."
+ },
+ "mc": {
+  "config_hash": "324f43edc8b4073ea5f792c94a630cec239431b90813d6d5ec81e5ea7a98c38d",
+  "photon_tiers": [
+   60000000,
+   120000000,
+   240000000
+  ],
+  "n0_photons": 120000000,
+  "batch_photons": 6000000,
+  "gpuid": 1,
+  "seed_rule": "N0: 30000000 + repeat*10000. Channel: 31000000 + tier*100000 + repeat*10000 + mua_index*100 + depth_index.",
+  "runner": "simulate.run(config, output, depth, mua, photons, seed) with configs/simulation.json unchanged"
+ },
+ "seed_independence": {
+  "earlier_mc_records_scanned": 67,
+  "earlier_run_seeds": 66,
+  "earlier_batch_seeds": 851,
+  "new_run_seeds": 543,
+  "new_batch_seeds_all_tiers": 12660,
+  "collisions": 0
+ },
+ "readout_version": "pixelwise_N0_then_y_mean_then_x_bin/v1",
+ "tool_versions": {
+  "mc_environment": {
+   "python": "3.12.14",
+   "pmcxcl": "0.7.5",
+   "numpy": "2.5.4"
+  },
+  "analysis_environment": {
+   "python": "3.12.8",
+   "numpy": "2.2.6",
+   "scipy": "1.14.1",
+   "torch": "2.11.0"
+  }
+ },
+ "locked_files": {
+  "configs/simulation.json": "2078630535a4b448b4c8d5f4e7a922b8c604d56c56597f65cacc088b3a57aa38",
+  "configs/learning.json": "5dd249ffba6a8ebe0932d17bf28be89c555f1cd252b6e2acbb58782fec81e973",
+  "code/simulate.py": "a75f98b1a208fdc5eb125da498cc3c2e6a29dca99dabc5288df4d7b3df6a82c4",
+  "code/readout.py": "86b6b3a6502fa1678d06aac88eccf76820f15075dcaad9d2936693dfc3241168",
+  "code/train.py": "2b7b5b0395f036dd4d576a38a3db7944e94d9075f648c33d8ea9e614d7d2cf74"
+ },
+ "training_data": {
+  "dataset": {
+   "path": "results/stage4/data/dataset.npz",
+   "sha256": "e98155a93b070983c511076125c5e74ac491395dfcff801edf8779914b3a34b1"
+  },
+  "lut": {
+   "path": "results/stage4/lut_FK.npz",
+   "sha256": "71e7ec1597c6d553e1138c1883580ee3ad57378314e7712143ca9fcabb5a080e"
+  }
+ },
+ "checkpoints": [
+  {
+   "branch": "F",
+   "seed": 42,
+   "path": "results/stage4/models/cnn_F_seed42.pt",
+   "sha256": "15f97faa2c6a2d07a52ee165434973037674b28eb49b5579805b391e46868a6b",
+   "training_log": "results/stage4/models/training_F_seed42.json",
+   "training_log_sha256": "2134151b4e1d11934416ca2c813985648b846381498bbb2ed5932f4a8efd8e6b",
+   "best_epoch": 100,
+   "validation_mae_mm": 0.10977381467819214
+  },
+  {
+   "branch": "K",
+   "seed": 42,
+   "path": "results/stage4/models/cnn_K_seed42.pt",
+   "sha256": "c4f0a530a035eccd5622ede1dd8071d7d597b4db59af6c7b750800a190d82d12",
+   "training_log": "results/stage4/models/training_K_seed42.json",
+   "training_log_sha256": "c03f5ad90035762c9f5a1f03b4c46ffc88e338117c92d87d083bd34216ec531c",
+   "best_epoch": 33,
+   "validation_mae_mm": 0.02572193741798401
+  },
+  {
+   "branch": "F",
+   "seed": 43,
+   "path": "results/stage4/models/cnn_F_seed43.pt",
+   "sha256": "1a69c8c5b65dea38d14ffb734e8211ff0ae2aa82061081ee27b776c6ace434e1",
+   "training_log": "results/stage4/models/training_F_seed43.json",
+   "training_log_sha256": "02a713a959e8281e87ad1084b28488e3572477aece616bc9270a486a63c67f31",
+   "best_epoch": 100,
+   "validation_mae_mm": 0.19348689913749695
+  },
+  {
+   "branch": "K",
+   "seed": 43,
+   "path": "results/stage4/models/cnn_K_seed43.pt",
+   "sha256": "83e9b13966bbdfc53deb38216291d98609a98afe66bc426e18c829fa8cc4687d",
+   "training_log": "results/stage4/models/training_K_seed43.json",
+   "training_log_sha256": "b73e9147ea047e56ed77f9f0900687be1830841a44f4fa4bf9dfed9332680cd1",
+   "best_epoch": 38,
+   "validation_mae_mm": 0.03611442446708679
+  },
+  {
+   "branch": "F",
+   "seed": 44,
+   "path": "results/stage4/models/cnn_F_seed44.pt",
+   "sha256": "52cfa983414364bf8677bb111318070a34ec8f1f7278f6680ccde8152d18dc38",
+   "training_log": "results/stage4/models/training_F_seed44.json",
+   "training_log_sha256": "49a89c709cfc9b38c331049bb18fc301a4caaef8a6f25392bc85e98faa7cd469",
+   "best_epoch": 97,
+   "validation_mae_mm": 0.17820416390895844
+  },
+  {
+   "branch": "K",
+   "seed": 44,
+   "path": "results/stage4/models/cnn_K_seed44.pt",
+   "sha256": "8d8e6c2075e9a8151fb38a6dc9d9f39dfbaf0817cb2f0542c8c0039f1c69fc1a",
+   "training_log": "results/stage4/models/training_K_seed44.json",
+   "training_log_sha256": "416470d9a4a6d54fa14fd64e1b36f49afded40099aee4b625b41b6b108cd3a5d",
+   "best_epoch": 45,
+   "validation_mae_mm": 0.03114238753914833
+  }
+ ],
+ "geometry_check": [
+  {
+   "depth_mm": 0.6,
+   "voxelized_top_mm": 0.6,
+   "voxelized_bottom_mm": 3.6,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 0.9,
+   "voxelized_top_mm": 0.9,
+   "voxelized_bottom_mm": 3.9,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 1.4,
+   "voxelized_top_mm": 1.4,
+   "voxelized_bottom_mm": 4.4,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 1.8,
+   "voxelized_top_mm": 1.8,
+   "voxelized_bottom_mm": 4.8,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 2.3,
+   "voxelized_top_mm": 2.3,
+   "voxelized_bottom_mm": 5.3,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 2.8,
+   "voxelized_top_mm": 2.8,
+   "voxelized_bottom_mm": 5.8,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 3.3,
+   "voxelized_top_mm": 3.3,
+   "voxelized_bottom_mm": 6.3,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 3.8,
+   "voxelized_top_mm": 3.8,
+   "voxelized_bottom_mm": 6.8,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 4.3,
+   "voxelized_top_mm": 4.3,
+   "voxelized_bottom_mm": 7.3,
+   "voxelized_width_mm": 3.0
+  },
+  {
+   "depth_mm": 4.8,
+   "voxelized_top_mm": 4.8,
+   "voxelized_bottom_mm": 7.8,
+   "voxelized_width_mm": 3.0
+  }
+ ],
+ "quality_plan": {
+  "validity": "Check seed, actual photons, initial energy, finite reflectance, positive N0, collection layer and geometry. Do not repair NaN or drop bad points to let the CNN run.",
+  "pairing": "Channel repeat r is normalized only by N0 repeat r.",
+  "reference_repeat": 1,
+  "convergence": {
+   "method": "readout.compare(diagnostics(repeat 1), diagnostics(candidate)) for repeats 2 and 3; a condition passes when both pass",
+   "relative_tolerance": 0.1,
+   "weak_contrast_reference_below": 0.05,
+   "weak_contrast_absolute_tolerance": 0.005,
+   "fwhm": "must be defined and within the relative tolerance, including for weak signals"
+  },
+  "escalation": "If a condition fails at tier t, run all three repeats of that condition at tier t+1 using the pre-assigned seeds. Keep every tier. Selection uses MC quality only and is fixed before CNN predictions are opened.",
+  "if_still_failing": "Mark the condition as insufficiently reliable after tier 2; do not claim full validation of that region.",
+  "n0_escalation": "N0 stays at 1.2e8 photons in this lock; changing it requires a dated amendment.",
+  "pilot_reuse": "Pilot runs are the same manifest entries as the main matrix and are reused only if the configuration is unchanged and they pass.",
+  "forbidden_selection": "Never drop a condition because the CNN is wrong, and never try extra seeds to keep favourable runs."
+ },
+ "analysis_plan": {
+  "error_definition": "e = predicted_depth_mm - true_depth_mm",
+  "model_input": "readout.profile(channel, N0_same_repeat) as float32 batch x 1 x 128; identical input for F and K; channel absorption is never given to the network; model.eval() with torch.no_grad()",
+  "metrics": {
+   "MAE": "mean(|e|)",
+   "RMSE": "sqrt(mean(e^2))",
+   "bias": "mean(e)"
+  },
+  "aggregation": "For each condition and model seed, compute the metric across the three MC repeats; then average conditions with equal weight. Report each model seed, the mean and the SD (ddof=1) across the three seeds.",
+  "primary_endpoint": {
+   "name": "delta_MAE_unseen",
+   "definition": "MAE_K - MAE_F over the 20 conditions with mua in {0.22, 0.40}; positive means F has lower MAE",
+   "mua_mm_inv": [
+    0.22,
+    0.4
+   ],
+   "n_conditions": 20
+  },
+  "secondary_groups": {
+   "seen_weak": "mua in {0.15, 0.30}, each level and pooled; new MC, not a new absorption level for F",
+   "standard_tradeoff": "delta_standard = MAE_F - MAE_K at mua 0.508, with absolute values",
+   "high": "mua 1.0"
+  },
+  "absorption_stability": "At each depth and model seed, average predictions across the three MC repeats at each mua; R = max_over_mua - min_over_mua. Report R_F and R_K with MAE at that depth. Small R counts only if predictions are also close to the true depth.",
+  "depth_discrimination": "For each mua, report predicted-vs-true line, MAE, slope and intercept. R^2 alone is not used to conclude accuracy.",
+  "constant_baseline": {
+   "definition": "always predict the mean depth of the original training split",
+   "value_mm": 2.7229068279266357
+  },
+  "target": {
+   "mae_mm": 0.5,
+   "interpretation": "Report the conditions meeting and missing MAE <= 0.5 mm. Project target; not a clinical standard or a per-prediction bound."
+  },
+  "paired_comparison": "Absolute-error difference K - F on the same condition, MC repeat and model-seed pair.",
+  "independence": "60 conditions are a fixed design grid. Three MC repeats measure numerical variation and three CNN seeds measure training variation; the three N0 maps are shared across conditions by repeat index. Do not multiply these into a physical sample size.",
+  "statistical_inference": "Descriptive paired effect sizes and consistency across seeds and conditions only; no population significance claim.",
+  "conclusion_rules": "Section 6 of Ke_hoach_tiep_theo_kiem_chung_doc_lap_FK.md. Completion does not depend on a result favourable to F."
+ },
+ "n0_runs": [
+  {
+   "run_id": "N0_r1",
+   "kind": "N0",
+   "repeat": 1,
+   "pilot": true,
+   "photons": 120000000,
+   "seed": 30010000,
+   "output": "results/validation_independent/mc/N0_rep1.npz"
+  },
+  {
+   "run_id": "N0_r2",
+   "kind": "N0",
+   "repeat": 2,
+   "pilot": true,
+   "photons": 120000000,
+   "seed": 30020000,
+   "output": "results/validation_independent/mc/N0_rep2.npz"
+  },
+  {
+   "run_id": "N0_r3",
+   "kind": "N0",
+   "repeat": 3,
+   "pilot": true,
+   "photons": 120000000,
+   "seed": 30030000,
+   "output": "results/validation_independent/mc/N0_rep3.npz"
+  }
+ ],
+ "channel_runs": [
+  {
+   "run_id": "C_z0.600_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.150",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.150",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.150",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230000,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.600_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.150",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.150",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.150",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230001,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_0.900_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.150",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.150",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.150",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230002,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.400_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.150",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.150",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.150",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230003,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_1.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.150",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.150",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.150",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230004,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.150",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.150",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.150",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230005,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_2.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.150",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.150",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.150",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230006,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.150",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.150",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.150",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230007,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_3.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.150",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.150",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.150",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230008,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.150_r1",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.150",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.150_r2",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.150",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.150_r3",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.150",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.15,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230009,
+     "output": "results/validation_independent/mc/channel/mua_0.150_depth_4.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.220",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.220",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.220",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230100,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.600_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.220",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.220",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.220",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230101,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_0.900_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.220",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.220",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.220",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230102,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.400_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.220",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.220",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.220",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230103,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_1.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.220",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.220",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.220",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230104,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.220",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.220",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.220",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230105,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_2.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.220",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.220",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.220",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230106,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.220",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.220",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.220",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230107,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_3.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.220",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.220",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.220",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230108,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.220_r1",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.220",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.220_r2",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.220",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.220_r3",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.220",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.22,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230109,
+     "output": "results/validation_independent/mc/channel/mua_0.220_depth_4.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.300",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.300",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.300",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230200,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.600_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.300",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.300",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.300",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230201,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_0.900_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.300",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.300",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.300",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230202,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.400_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.300",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.300",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.300",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230203,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_1.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.300",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.300",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.300",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230204,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.300",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.300",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.300",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230205,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_2.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.300",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.300",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.300",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230206,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.300",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.300",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.300",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230207,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_3.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.300",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.300",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.300",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230208,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.300_r1",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.300",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.300_r2",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.300",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.300_r3",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.300",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.3,
+   "mua_group": "seen_weak",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230209,
+     "output": "results/validation_independent/mc/channel/mua_0.300_depth_4.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.400",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.400",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.400",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230300,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.600_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.400",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.400",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.400",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230301,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_0.900_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.400",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.400",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.400",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230302,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.400_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.400",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.400",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.400",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230303,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_1.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.400",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.400",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.400",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230304,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.400",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.400",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.400",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230305,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_2.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.400",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.400",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.400",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230306,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.400",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.400",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.400",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230307,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_3.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.400",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.400",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.400",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230308,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.400_r1",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.400",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.400_r2",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.400",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.400_r3",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.400",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.4,
+   "mua_group": "unseen",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230309,
+     "output": "results/validation_independent/mc/channel/mua_0.400_depth_4.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.508",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.508",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z0.600_m0.508",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230400,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.600_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.508",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.508",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z0.900_m0.508",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230401,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_0.900_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.508",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.508",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z1.400_m0.508",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230402,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.400_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.508",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.508",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z1.800_m0.508",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230403,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_1.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.508",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.508",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z2.300_m0.508",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230404,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.508",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.508",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z2.800_m0.508",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230405,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_2.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.508",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.508",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z3.300_m0.508",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230406,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.508",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.508",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z3.800_m0.508",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230407,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_3.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.508",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.508",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z4.300_m0.508",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230408,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.508_r1",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.508",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.508_r2",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.508",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m0.508_r3",
+   "kind": "channel",
+   "condition_id": "z4.800_m0.508",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 0.508,
+   "mua_group": "standard",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": true,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230409,
+     "output": "results/validation_independent/mc/channel/mua_0.508_depth_4.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z0.600_m1.000",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z0.600_m1.000",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.600_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z0.600_m1.000",
+   "depth_mm": 0.6,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230500,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.600_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z0.900_m1.000",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z0.900_m1.000",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z0.900_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z0.900_m1.000",
+   "depth_mm": 0.9,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230501,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_0.900_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z1.400_m1.000",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z1.400_m1.000",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.400_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z1.400_m1.000",
+   "depth_mm": 1.4,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230502,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.400_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z1.800_m1.000",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z1.800_m1.000",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z1.800_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z1.800_m1.000",
+   "depth_mm": 1.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230503,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_1.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z2.300_m1.000",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z2.300_m1.000",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.300_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z2.300_m1.000",
+   "depth_mm": 2.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230504,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z2.800_m1.000",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z2.800_m1.000",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z2.800_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z2.800_m1.000",
+   "depth_mm": 2.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230505,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_2.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z3.300_m1.000",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z3.300_m1.000",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.300_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z3.300_m1.000",
+   "depth_mm": 3.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230506,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z3.800_m1.000",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z3.800_m1.000",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z3.800_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z3.800_m1.000",
+   "depth_mm": 3.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230507,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_3.800_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z4.300_m1.000",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z4.300_m1.000",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.300_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z4.300_m1.000",
+   "depth_mm": 4.3,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230508,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.300_rep3_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m1.000_r1",
+   "kind": "channel",
+   "condition_id": "z4.800_m1.000",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 1,
+   "n0_run_id": "N0_r1",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31010509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep1_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31110509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep1_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31210509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep1_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m1.000_r2",
+   "kind": "channel",
+   "condition_id": "z4.800_m1.000",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 2,
+   "n0_run_id": "N0_r2",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31020509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep2_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31120509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep2_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31220509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep2_ph240M.npz"
+    }
+   ]
+  },
+  {
+   "run_id": "C_z4.800_m1.000_r3",
+   "kind": "channel",
+   "condition_id": "z4.800_m1.000",
+   "depth_mm": 4.8,
+   "mua_mm_inv": 1.0,
+   "mua_group": "high",
+   "repeat": 3,
+   "n0_run_id": "N0_r3",
+   "pilot": false,
+   "photon_tiers": [
+    {
+     "tier": 0,
+     "photons": 60000000,
+     "seed": 31030509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep3_ph060M.npz"
+    },
+    {
+     "tier": 1,
+     "photons": 120000000,
+     "seed": 31130509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep3_ph120M.npz"
+    },
+    {
+     "tier": 2,
+     "photons": 240000000,
+     "seed": 31230509,
+     "output": "results/validation_independent/mc/channel/mua_1.000_depth_4.800_rep3_ph240M.npz"
+    }
+   ]
+  }
+ ]
+}

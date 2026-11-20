@@ -1,0 +1,12 @@
+{
+  "python": "3.12.8",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.14.1",
+    "matplotlib": "3.9.3",
+    "torch": "2.11.0"
+  },
+  "simulation_python": "E:/thacsi/LV/vein/new_pp/.venv-fk/Scripts/python.exe",
+  "simulation_pmcxcl": "0.7.5",
+  "gpu": "AMD Radeon RX 6600"
+}
